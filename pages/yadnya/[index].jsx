@@ -55,11 +55,11 @@ const Yadnya = ({ index, response }) => {
                 <Heading as="h3" fontSize="1rem" mt="2" mb="4">
                   {ceremony.attributes.name}
                 </Heading>
-                <Text
+                {/* <Text
                   as="p"
                   fontSize="1rem"
                   dangerouslySetInnerHTML={{ __html: ceremony.attributes.description }}
-                ></Text>
+                ></Text> */}
               </Box>
             ))}
           </Box>
