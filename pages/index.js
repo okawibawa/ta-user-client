@@ -23,7 +23,7 @@ export default function Home() {
       <Box display="flex" w="100%" h="60vh" justifyContent="space-between" alignItems="center" mb="8">
         <Box w="48%">
           <Heading as="h2">Sanatras</Heading>
-          <Text as="p" mx="2">
+          <Text as="p">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque delectus perferendis error natus incidunt
             dolorum.
           </Text>
@@ -34,7 +34,7 @@ export default function Home() {
         </Box>
       </Box>
 
-      <Box w="100%" textAlign="center" py="6" backgroundColor="#FAF3E3" borderRadius="4" mb="8">
+      <Box w="100%" textAlign="center" py="6" backgroundColor="#FAF3E3" borderRadius="4" mb="16">
         <Heading as="h3" fontSize="1.5rem" mb="2">
           Tentang Sanatras
         </Heading>
@@ -44,7 +44,7 @@ export default function Home() {
         </Text>
       </Box>
 
-      <Box textAlign="center" mb="8">
+      <Box textAlign="center" mb="16">
         <Heading as="h3" fontSize="1.5rem" mb="2">
           Panca Yadnya
         </Heading>
@@ -111,6 +111,20 @@ export default function Home() {
             </Box>
           </div>
         </div>
+      </Box>
+
+      <Box textAlign="center" mb="16">
+        <Heading as="h3" fontSize="1.25rem">
+          Hubungi Kami
+        </Heading>
+
+        <Text as="p" mt="2" mb="8">
+          Sanatras Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, praesentium!
+        </Text>
+
+        <Button>
+          <a href="mailto:okaa.wibawa@gmail.com">sanatras@info.com</a>
+        </Button>
       </Box>
     </Layout>
   );

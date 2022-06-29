@@ -13,8 +13,8 @@ const breakpoints = {
 const theme = extendTheme({
   breakpoints,
   fonts: {
-    heading: `Inter`,
-    body: `Inter`,
+    heading: 'Inter',
+    body: 'Inter',
   },
 });
 
