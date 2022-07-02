@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 // comps
 import Layout from '../../components/Layout';
+import HeadSeo from '../../components/Head';
 
 // chakra
 import {
@@ -41,6 +42,8 @@ const Properti = ({ post, tags, subProperties }) => {
 
   return (
     <Layout>
+      <HeadSeo />
+
       <Box w="100%" mb="8" mt="16">
         <Heading as="h2" mb="2">
           {post.data.attributes.name}

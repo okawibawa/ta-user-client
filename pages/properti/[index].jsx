@@ -3,6 +3,7 @@ import { getYadnyaDetailData } from '../../apis/apis';
 
 // comps
 import Layout from '../../components/Layout';
+import HeadSeo from '../../components/Head';
 
 // chakra
 import { Box, Heading, Text, AspectRatio } from '@chakra-ui/react';
@@ -24,6 +25,8 @@ const Properti = ({ post }) => {
 
   return (
     <Layout>
+      <HeadSeo />
+
       <Box w="100%" mb="8" mt="16">
         <Heading as="h2" mb="2">
           {post.data.attributes.name}

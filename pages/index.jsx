@@ -9,6 +9,7 @@ import { Box, Heading, Text, Button } from '@chakra-ui/react';
 
 // comps
 import Layout from '../components/Layout';
+import HeadSeo from '../components/Head';
 
 // constants
 import { ceremonies } from '../constants/ceremonies';
@@ -23,6 +24,7 @@ export default function Home() {
 
   return (
     <Layout>
+      <HeadSeo />
       <Box display="flex" w="100%" h="60vh" justifyContent="space-between" alignItems="center" mb="8">
         <Box w="48%">
           <Heading as="h2">Sanatras</Heading>

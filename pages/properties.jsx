@@ -22,6 +22,7 @@ import {
 
 // comps
 import Layout from '../components/Layout';
+import HeadSeo from '../components/Head';
 
 // apis
 import { getAllTags, getPostByTag } from '../apis/apis';
@@ -57,6 +58,8 @@ const Properties = () => {
 
   return (
     <Layout>
+      <HeadSeo />
+
       <Box w="100%" mb="8" mt="16">
         <Heading as="h2">Properti Upacara</Heading>
         <Text as="p">

@@ -7,6 +7,7 @@ import { Box, Heading, Text } from '@chakra-ui/react';
 
 // comps
 import Layout from '../../components/Layout';
+import HeadSeo from '../../components/Head';
 
 // apis
 import { getCeremonies } from '../../apis/apis';
@@ -19,6 +20,8 @@ const Yadnya = ({ index, response }) => {
 
   return (
     <Layout>
+      <HeadSeo />
+
       {ceremonies
         .filter((ceremony) => ceremony.id == index)
         .map((ceremony) => (
