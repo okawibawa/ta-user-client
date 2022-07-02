@@ -13,10 +13,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
@@ -39,31 +35,31 @@ const Navbar = () => {
                     Panca Yadnya <ChevronDownIcon />
                   </MenuButton>
                   <MenuList>
-                    <MenuItem>
-                      <Link href={`/yadnya/${1}`}>
-                        <a>Dewa Yadnya</a>
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link href={`/yadnya/${3}`}>
-                        <a>Manusa Yadnya</a>
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link href={`/yadnya/${4}`}>
-                        <a>Rsi Yadnya</a>
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link href={`/yadnya/${5}`}>
-                        <a>Bhuta Yadnya</a>
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link href={`/yadnya/${2}`}>
-                        <a>Pitra Yadnya</a>
-                      </Link>
-                    </MenuItem>
+                    <Link href={`/yadnya/${1}`}>
+                      <a>
+                        <MenuItem>Dewa Yadnya</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href={`/yadnya/${3}`}>
+                      <a>
+                        <MenuItem>Manusa Yadnya</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href={`/yadnya/${4}`}>
+                      <a>
+                        <MenuItem>Rsi Yadnya</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href={`/yadnya/${5}`}>
+                      <a>
+                        <MenuItem>Bhuta Yadnya</MenuItem>
+                      </a>
+                    </Link>
+                    <Link href={`/yadnya/${2}`}>
+                      <a>
+                        <MenuItem>Pitra Yadnya</MenuItem>
+                      </a>
+                    </Link>
                   </MenuList>
                 </Menu>
               </ListItem>
