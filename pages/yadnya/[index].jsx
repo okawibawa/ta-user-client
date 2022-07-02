@@ -49,7 +49,11 @@ const Yadnya = ({ index, response }) => {
                     boxShadow="0 12px 24px rgba(0, 0, 0, .1)"
                   >
                     <Image
-                      src={ceremony.attributes.pictures.data ? '/favicon.ico' : '/default.png'}
+                      src={
+                        ceremony.attributes.pictures.data
+                          ? ceremony.attributes.pictures.data[0].attributes.url
+                          : '/default.png'
+                      }
                       alt="Profile"
                       width={300}
                       height={300}

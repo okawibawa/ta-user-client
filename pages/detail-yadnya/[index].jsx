@@ -1,7 +1,7 @@
 import React from 'react';
-import { getYadnyaDetailData } from '../../apis/apis';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import Link from 'next/link';
 
 // comps
 import Layout from '../../components/Layout';
@@ -17,7 +17,12 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  OrderedList,
+  ListItem,
 } from '@chakra-ui/react';
+
+// apis
+import { getPropertiesByMainPost, getYadnyaDetailData, getCeremonySteps, getAllTags } from '../../apis/apis';
 
 export const getServerSideProps = async (context) => {
   const {
@@ -25,14 +30,17 @@ export const getServerSideProps = async (context) => {
   } = context;
 
   const result = await getYadnyaDetailData(index);
+  const steps = await getCeremonySteps(result.data.data.id);
+  const tags = await getAllTags();
+  const properties = await getPropertiesByMainPost(result.data.data.id);
 
   return {
-    props: { post: result.data },
+    props: { index, post: result.data, steps: steps.data, tags: tags.data, properties: properties.data },
   };
 };
 
-const Properti = ({ post }) => {
-  console.log({ post });
+const Properti = ({ index, post, steps, tags, properties }) => {
+  console.log({ properties: properties });
 
   return (
     <Layout>
@@ -114,9 +122,23 @@ const Properti = ({ post }) => {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat.
+              <OrderedList>
+                {steps.data.filter((step) => step.attributes.status.data.id == 1).length > 0 ? (
+                  steps.data.map((step) => (
+                    <ListItem key={step.id}>
+                      <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
+                        <a>
+                          <Text as="p" textDecoration="underline" display="inline">
+                            {step.attributes.post.data.attributes.name}
+                          </Text>
+                        </a>
+                      </Link>
+                    </ListItem>
+                  ))
+                ) : (
+                  <Text as="p">Tidak ada data.</Text>
+                )}
+              </OrderedList>
             </AccordionPanel>
           </AccordionItem>
 
@@ -130,9 +152,21 @@ const Properti = ({ post }) => {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat.
+              {steps.data.filter((step) => step.attributes.status.data.id == 2).length > 0 ? (
+                steps.data.map((step) => (
+                  <ListItem key={step.id}>
+                    <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
+                      <a>
+                        <Text as="p" textDecoration="underline" display="inline">
+                          {step.attributes.post.data.attributes.name}
+                        </Text>
+                      </a>
+                    </Link>
+                  </ListItem>
+                ))
+              ) : (
+                <Text as="p">Tidak ada data.</Text>
+              )}
             </AccordionPanel>
           </AccordionItem>
 
@@ -146,11 +180,62 @@ const Properti = ({ post }) => {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat.
+              {steps.data.filter((step) => step.attributes.status.data.id == 3).length > 0 ? (
+                steps.data.map((step) => (
+                  <ListItem key={step.id}>
+                    <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
+                      <a>
+                        <Text as="p" textDecoration="underline" display="inline">
+                          {step.attributes.post.data.attributes.name}
+                        </Text>
+                      </a>
+                    </Link>
+                  </ListItem>
+                ))
+              ) : (
+                <Text as="p">Tidak ada data.</Text>
+              )}
             </AccordionPanel>
           </AccordionItem>
+        </Accordion>
+      </Box>
+
+      <Box mb="8">
+        <Heading as="h3" mb="2">
+          Properti
+        </Heading>
+
+        <Accordion allowToggle>
+          {tags.data.map((tag) => (
+            <AccordionItem key={tag.id}>
+              <h2>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    {tag.attributes.name}
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+              </h2>
+              <AccordionPanel pb={4}>
+                <OrderedList>
+                  {properties.data
+                    .filter((property) => property.attributes.tag.data !== null)
+                    .filter((property) => property.attributes.tag.data.id == tag.id)
+                    .map((property) => (
+                      <ListItem key={property.id}>
+                        <Link href={`/properti/${property.attributes.post.data.id}`}>
+                          <a>
+                            <Text as="p" textDecoration="underline" display="inline">
+                              {property.attributes.post.data.attributes.name}
+                            </Text>
+                          </a>
+                        </Link>
+                      </ListItem>
+                    ))}
+                </OrderedList>
+              </AccordionPanel>
+            </AccordionItem>
+          ))}
         </Accordion>
       </Box>
     </Layout>

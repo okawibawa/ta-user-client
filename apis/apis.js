@@ -54,3 +54,35 @@ export const getYadnyaDetailData = async (id) => {
     return error;
   }
 };
+
+export const getCeremonySteps = async (id) => {
+  try {
+    const res = await axios.get(`${host}/steps/ceremony/${id}?populate=status,post`);
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getPropertiesByMainPost = async (main_post) => {
+  try {
+    const res = await axios.get(
+      `${host}/properties-by-main/${main_post}?populate=tag,child_post,main_post,post,parent_post`
+    );
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getStepsSubDetails = async (parent_id, post_id) => {
+  try {
+    const res = await axios.get(`${host}/steps-sub-details/${parent_id}/${post_id}?populate=*`);
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
