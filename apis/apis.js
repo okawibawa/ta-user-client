@@ -86,3 +86,13 @@ export const getStepsSubDetails = async (parent_id, post_id) => {
     return error;
   }
 };
+
+export const getSubDetailProperties = async (main_post, child_post, self) => {
+  try {
+    const res = await axios.get(`${host}/sub-details-property/${main_post}/${child_post}/${self}?populate=*`);
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};

@@ -41,7 +41,7 @@ export const getServerSideProps = async (context) => {
 };
 
 const Properti = ({ index, post, steps, tags, properties }) => {
-  console.log({ properties: properties });
+  console.log({ index });
 
   return (
     <Layout>
@@ -121,6 +121,10 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                 <Box flex="1" textAlign="left">
                   Prosesi Awal
                 </Box>
+
+                <Text as="p" mr="4" fontSize=".825rem">
+                  {steps.data.filter((step) => step.attributes.status.data.id == 1).length} Prosesi
+                </Text>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
@@ -128,7 +132,7 @@ const Properti = ({ index, post, steps, tags, properties }) => {
               <OrderedList>
                 {steps.data.filter((step) => step.attributes.status.data.id == 1).length > 0 ? (
                   steps.data.map((step) => (
-                    <ListItem key={step.id}>
+                    <ListItem key={step.id} mb="2">
                       <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
                         <a>
                           <Text as="p" textDecoration="underline" display="inline">
@@ -151,13 +155,17 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                 <Box flex="1" textAlign="left">
                   Prosesi Puncak
                 </Box>
+
+                <Text as="p" mr="4" fontSize=".825rem">
+                  {steps.data.filter((step) => step.attributes.status.data.id == 2).length} Prosesi
+                </Text>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
               {steps.data.filter((step) => step.attributes.status.data.id == 2).length > 0 ? (
                 steps.data.map((step) => (
-                  <ListItem key={step.id}>
+                  <ListItem key={step.id} mb="2">
                     <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
                       <a>
                         <Text as="p" textDecoration="underline" display="inline">
@@ -179,14 +187,18 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                 <Box flex="1" textAlign="left">
                   Prosesi Akhir
                 </Box>
+
+                <Text as="p" mr="4" fontSize=".825rem">
+                  {steps.data.filter((step) => step.attributes.status.data.id == 3).length} Prosesi
+                </Text>
                 <AccordionIcon />
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
               {steps.data.filter((step) => step.attributes.status.data.id == 3).length > 0 ? (
                 steps.data.map((step) => (
-                  <ListItem key={step.id}>
-                    <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
+                  <ListItem key={step.id} mb="2">
+                    <Link href={`/properti-detail/${index[0]}/${index[1]}/${step.attributes.post.data.id}`}>
                       <a>
                         <Text as="p" textDecoration="underline" display="inline">
                           {step.attributes.post.data.attributes.name}
@@ -214,8 +226,17 @@ const Properti = ({ index, post, steps, tags, properties }) => {
               <h2>
                 <AccordionButton>
                   <Box flex="1" textAlign="left">
-                    {tag.attributes.name}
+                    <Text as="p">{tag.attributes.name}</Text>
                   </Box>
+
+                  <Text as="p" mr="4" fontSize=".825rem">
+                    {
+                      properties.data
+                        .filter((property) => property.attributes.tag.data !== null)
+                        .filter((property) => property.attributes.tag.data.id == tag.id).length
+                    }{' '}
+                    Prosesi
+                  </Text>
                   <AccordionIcon />
                 </AccordionButton>
               </h2>
@@ -225,7 +246,7 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                     .filter((property) => property.attributes.tag.data !== null)
                     .filter((property) => property.attributes.tag.data.id == tag.id)
                     .map((property) => (
-                      <ListItem key={property.id}>
+                      <ListItem key={property.id} mb="2">
                         <Link href={`/properti/${property.attributes.post.data.id}`}>
                           <a>
                             <Text as="p" textDecoration="underline" display="inline">

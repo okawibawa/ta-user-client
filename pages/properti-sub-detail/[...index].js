@@ -21,7 +21,7 @@ import {
 } from '@chakra-ui/react';
 
 // apis
-import { getYadnyaDetailData, getAllTags, getStepsSubDetails } from '../../apis/apis';
+import { getYadnyaDetailData, getAllTags, getSubDetailProperties } from '../../apis/apis';
 
 export const getServerSideProps = async (context) => {
   const {
@@ -30,7 +30,7 @@ export const getServerSideProps = async (context) => {
 
   const result = await getYadnyaDetailData(index[1]);
   const tags = await getAllTags();
-  const subProperties = await getStepsSubDetails(index[0], index[1]);
+  const subProperties = await getSubDetailProperties(index[0], index[1], index[2]);
 
   return {
     props: { index, post: result.data, tags: tags.data, subProperties: subProperties.data },
@@ -39,8 +39,6 @@ export const getServerSideProps = async (context) => {
 
 const Properti = ({ index, post, tags, subProperties }) => {
   console.log({ index });
-  console.log({ post });
-  console.log({ subProperties });
 
   return (
     <Layout>
@@ -94,52 +92,6 @@ const Properti = ({ index, post, tags, subProperties }) => {
             </Box>
           </Box>
         </Box>
-      </Box>
-
-      <Box mb="8">
-        <Heading as="h3" mb="2">
-          Detail Prosesi
-        </Heading>
-
-        <Accordion allowToggle>
-          <AccordionItem>
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  <Text as="p">Prosesi</Text>
-                </Box>
-
-                <Text as="p" mr="4" fontSize=".825rem">
-                  {
-                    subProperties.data
-                      .filter((property) => property.attributes.tag.data !== null)
-                      .filter((property) => property.attributes.tag.data.id == 3).length
-                  }{' '}
-                  Prosesi
-                </Text>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>
-              <OrderedList>
-                {subProperties.data
-                  .filter((property) => property.attributes.tag.data !== null)
-                  .filter((property) => property.attributes.tag.data.id == 3)
-                  .map((property) => (
-                    <ListItem key={property.id} mb="2">
-                      <Link href={`/properti-sub-detail/${index[0]}/${index[1]}/${property.id}`}>
-                        <a>
-                          <Text as="p" textDecoration="underline" display="inline">
-                            {property.attributes.post.data.attributes.name}
-                          </Text>
-                        </a>
-                      </Link>
-                    </ListItem>
-                  ))}
-              </OrderedList>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
       </Box>
 
       <Box mb="8">
