@@ -18,6 +18,10 @@ import {
   AccordionIcon,
   OrderedList,
   ListItem,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
 } from '@chakra-ui/react';
 
 // apis
@@ -28,9 +32,9 @@ export const getServerSideProps = async (context) => {
     query: { index },
   } = context;
 
-  const result = await getYadnyaDetailData(index[1]);
+  const result = await getYadnyaDetailData(index[2]);
   const tags = await getAllTags();
-  const subProperties = await getStepsSubDetails(index[0], index[1]);
+  const subProperties = await getStepsSubDetails(index[1], index[2]);
 
   return {
     props: { index, post: result.data, tags: tags.data, subProperties: subProperties.data },
@@ -38,15 +42,43 @@ export const getServerSideProps = async (context) => {
 };
 
 const Properti = ({ index, post, tags, subProperties }) => {
-  console.log({ index });
-  console.log({ post });
-  console.log({ subProperties });
+  const uniqueIds = [];
+
+  const unique = subProperties.data
+    .filter((subStep) => subStep.attributes.tag.data !== null && subStep.attributes.tag.data.id !== 3)
+    .filter((subStep) => {
+      const isDuplicate = uniqueIds.includes(subStep.attributes.post.data.id);
+
+      if (!isDuplicate) {
+        uniqueIds.push(subStep.attributes.post.data.id);
+
+        return true;
+      }
+
+      return false;
+    });
 
   return (
     <Layout>
       <HeadSeo />
 
-      <Box w="100%" mb="8" mt="16">
+      <Breadcrumb mt="8">
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Beranda</BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+          <Text as="p">{index[0].charAt(0).toUpperCase() + index[0].slice(1)}</Text>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+          <Text as="p" color="gray">
+            {post.data.attributes.name}
+          </Text>
+        </BreadcrumbItem>
+      </Breadcrumb>
+
+      <Box w="100%" mb="8" mt="8">
         <Heading as="h2" mb="2">
           {post.data.attributes.name}
         </Heading>
@@ -106,7 +138,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
             <h2>
               <AccordionButton>
                 <Box flex="1" textAlign="left">
-                  <Text as="p">Prosesi</Text>
+                  <Text as="p">Tahapan</Text>
                 </Box>
 
                 <Text as="p" mr="4" fontSize=".825rem">
@@ -115,7 +147,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
                       .filter((property) => property.attributes.tag.data !== null)
                       .filter((property) => property.attributes.tag.data.id == 3).length
                   }{' '}
-                  Prosesi
+                  Tahapan
                 </Text>
                 <AccordionIcon />
               </AccordionButton>
@@ -127,7 +159,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
                   .filter((property) => property.attributes.tag.data.id == 3)
                   .map((property) => (
                     <ListItem key={property.id} mb="2">
-                      <Link href={`/properti-sub-detail/${index[0]}/${index[1]}/${property.id}`}>
+                      <Link href={`/properti-sub-detail/${index[1]}/${index[2]}/${property.id}`}>
                         <a>
                           <Text as="p" textDecoration="underline" display="inline">
                             {property.attributes.post.data.attributes.name}
@@ -160,7 +192,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
 
                     <Text as="p" mr="4" fontSize=".825rem">
                       {
-                        subProperties.data
+                        unique
                           .filter((property) => property.attributes.tag.data !== null)
                           .filter((property) => property.attributes.tag.data.id == tag.id).length
                       }{' '}
@@ -171,7 +203,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
                 </h2>
                 <AccordionPanel pb={4}>
                   <OrderedList>
-                    {subProperties.data
+                    {unique
                       .filter((property) => property.attributes.tag.data !== null)
                       .filter((property) => property.attributes.tag.data.id == tag.id)
                       .map((property) => (

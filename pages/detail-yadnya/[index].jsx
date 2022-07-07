@@ -20,6 +20,10 @@ import {
   AccordionIcon,
   OrderedList,
   ListItem,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
 } from '@chakra-ui/react';
 
 // apis
@@ -47,7 +51,19 @@ const Properti = ({ index, post, steps, tags, properties }) => {
     <Layout>
       <HeadSeo />
 
-      <Box w="100%" mb="8" mt="16">
+      <Breadcrumb mt="8">
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Beranda</BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+          <Text as="p" color="gray">
+            {post.data.attributes.name}
+          </Text>
+        </BreadcrumbItem>
+      </Breadcrumb>
+
+      <Box w="100%" mb="8" mt="8">
         <Heading as="h2" mb="2">
           {post.data.attributes.name}
         </Heading>
@@ -133,7 +149,11 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                 {steps.data.filter((step) => step.attributes.status.data.id == 1).length > 0 ? (
                   steps.data.map((step) => (
                     <ListItem key={step.id} mb="2">
-                      <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
+                      <Link
+                        href={`/properti-detail/${post.data.attributes.name.toLowerCase()}/${index}/${
+                          step.attributes.post.data.id
+                        }`}
+                      >
                         <a>
                           <Text as="p" textDecoration="underline" display="inline">
                             {step.attributes.post.data.attributes.name}
