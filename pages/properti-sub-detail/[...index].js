@@ -18,52 +18,83 @@ import {
   AccordionIcon,
   OrderedList,
   ListItem,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
 } from '@chakra-ui/react';
 
 // apis
-import { getYadnyaDetailData, getAllTags, getSubDetailProperties } from '../../apis/apis';
+import { getYadnyaDetailData, getAllTags, getSubDetailProperties, getSubStepsDetail } from '../../apis/apis';
 
 export const getServerSideProps = async (context) => {
   const {
     query: { index },
   } = context;
 
-  const result = await getYadnyaDetailData(index[1]);
+  const result = await getSubStepsDetail(index[0], index[1], index[2]);
   const tags = await getAllTags();
   const subProperties = await getSubDetailProperties(index[0], index[1], index[2]);
 
   return {
-    props: { index, post: result.data, tags: tags.data, subProperties: subProperties.data },
+    props: {
+      index,
+      post: result.data,
+      tags: tags.data,
+      subProperties: subProperties.data,
+    },
   };
 };
 
 const Properti = ({ index, post, tags, subProperties }) => {
   console.log({ post });
-
   return (
     <Layout>
       <HeadSeo />
 
+      <Breadcrumb mt="8">
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Beranda</BreadcrumbLink>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+          <Text as="p">{post.data[0].attributes.parent_post.data.attributes.parent_post.data.attributes.name}</Text>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+          <Text as="p">{post.data[0].attributes.parent_post.data.attributes.post.data.attributes.name}</Text>
+        </BreadcrumbItem>
+
+        <BreadcrumbItem>
+          <Text as="p" color="gray">
+            {post.data[0].attributes.post.data.attributes.name}
+          </Text>
+        </BreadcrumbItem>
+      </Breadcrumb>
+
       <Box w="100%" mb="8" mt="16">
         <Heading as="h2" mb="2">
-          {post.data.attributes.name}
+          {post.data[0].attributes.post.data.attributes.name}
         </Heading>
 
         <Box display="flex" alignItems="flex-start" justifyContent="space-between">
           <Box w={['100%', '48%']}>
-            <Text as="p" dangerouslySetInnerHTML={{ __html: post.data.attributes.description }}></Text>
+            <Text
+              as="p"
+              dangerouslySetInnerHTML={{ __html: post.data[0].attributes.post.data.attributes.descriptions }}
+            ></Text>
           </Box>
 
           <Box w={['100%', '48%']}>
             <Box mb="4">
-              {post.data.attributes.video_url ? (
+              {post.data[0].attributes.post.data.attributes.video_url ? (
                 <AspectRatio maxW="560px" ratio={16 / 9}>
                   <iframe
                     title="naruto"
                     src={`${
-                      post.data.attributes.video_url.includes('https://www.youtube.com/embed/')
-                        ? post.data.attributes.video_url
-                        : `https://www.youtube.com/embed/${post.data.attributes.video_url}`
+                      post.data[0].attributes.post.data.attributes.video_url.includes('https://www.youtube.com/embed/')
+                        ? post.data[0].attributes.post.data.attributes.video_url
+                        : `https://www.youtube.com/embed/${post.data[0].attributes.post.data.attributes.video_url}`
                     }`}
                     allowFullScreen
                   />
@@ -74,7 +105,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
             </Box>
 
             <Box>
-              {post.data.attributes.audio_url ? (
+              {post.data[0].attributes.post.data.attributes.audio_url ? (
                 <AspectRatio maxW="560px" ratio={16 / 9}>
                   <iframe
                     title="audio"
@@ -83,7 +114,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
                     scrolling="no"
                     frameBorder="no"
                     allow="autoplay"
-                    src={`https://w.soundcloud.com/player/?url=${post.data.attributes.audio_url}`}
+                    src={`https://w.soundcloud.com/player/?url=${post.data[0].attributes.post.data.attributes.audio_url}`}
                   ></iframe>
                 </AspectRatio>
               ) : (

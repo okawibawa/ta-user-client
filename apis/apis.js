@@ -96,3 +96,23 @@ export const getSubDetailProperties = async (main_post, child_post, self) => {
     return error;
   }
 };
+
+export const getSubStepsDetail = async (parent_id, id, post_id) => {
+  try {
+    const res = await axios.get(`${host}/detail-ceremony/${parent_id}/${id}/post/${post_id}`);
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getCeremonyByParent = async (host, parent, id) => {
+  try {
+    const res = await axios.get(`${host}/parent/${parent}/ceremony/${id}`);
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
