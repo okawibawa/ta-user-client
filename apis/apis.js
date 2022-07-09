@@ -3,7 +3,7 @@ import axios from 'axios';
 let host;
 
 switch (process.env.NEXT_PUBLIC_ENV) {
-  case 'dev':
+  case 'prod':
     host = process.env.NEXT_PUBLIC_HOST_DEV;
     break;
   default:
