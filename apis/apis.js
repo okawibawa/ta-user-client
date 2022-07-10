@@ -4,10 +4,10 @@ let host;
 
 switch (process.env.NEXT_PUBLIC_ENV) {
   case 'prod':
-    host = process.env.NEXT_PUBLIC_HOST_DEV;
+    host = process.env.NEXT_PUBLIC_HOST_PROD;
     break;
   default:
-    host = process.env.NEXT_PUBLIC_HOST_PROD;
+    host = process.env.NEXT_PUBLIC_HOST_DEV;
     break;
 }
 
