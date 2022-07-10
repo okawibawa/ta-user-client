@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
+import Skeleton from 'react-loading-skeleton';
 
 // chakra
 import {
@@ -132,7 +133,19 @@ const Properties = () => {
                       </Tr>
                     </Thead>
                     <Tbody>
-                      {posts.data.length > 0 ? (
+                      {isLoading ? (
+                        <Tr>
+                          <Td width="1rem">
+                            <Skeleton />
+                          </Td>
+                          <Td>
+                            <Skeleton />
+                          </Td>
+                          <Td isNumeric>
+                            <Skeleton />
+                          </Td>
+                        </Tr>
+                      ) : posts.data.length > 0 ? (
                         posts.data.map((post, index) => (
                           <Tr key={post.id}>
                             <Td width="1rem">{index + 1}.</Td>
