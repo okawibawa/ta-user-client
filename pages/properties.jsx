@@ -133,7 +133,7 @@ const Properties = () => {
                       </Tr>
                     </Thead>
                     <Tbody>
-                      {isLoading ? (
+                      {isLoadingPost ? (
                         <Tr>
                           <Td width="1rem">
                             <Skeleton />
