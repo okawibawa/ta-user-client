@@ -47,6 +47,8 @@ const Properties = () => {
   }, []);
 
   useEffect(() => {
+    setIsLoadingPost(true);
+
     const getPost = async () => {
       const post = await getPostByTag(activeTag);
 
