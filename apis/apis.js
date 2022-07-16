@@ -13,8 +13,6 @@ switch (process.env.NEXT_PUBLIC_ENV) {
 
 // get ceremonies data
 export const getCeremonies = async (id) => {
-  console.log({ id });
-
   try {
     const result = await axios.get(`${host}/posts/ceremony/${id}?populate=*`);
 

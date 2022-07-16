@@ -16,8 +16,6 @@ import { getCeremonies } from '../../apis/apis';
 import { ceremonies } from '../../constants/ceremonies';
 
 const Yadnya = ({ index, response }) => {
-  console.log(response);
-
   return (
     <Layout>
       <HeadSeo />

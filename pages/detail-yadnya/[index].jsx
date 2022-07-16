@@ -18,6 +18,7 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  List,
   OrderedList,
   ListItem,
   Breadcrumb,
@@ -45,8 +46,6 @@ export const getServerSideProps = async (context) => {
 };
 
 const Properti = ({ index, post, steps, tags, properties }) => {
-  console.log({ index });
-
   return (
     <Layout>
       <HeadSeo />
@@ -145,9 +144,9 @@ const Properti = ({ index, post, steps, tags, properties }) => {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              <OrderedList>
-                {steps.data.filter((step) => step.attributes.status.data.id == 1).length > 0 ? (
-                  steps.data.map((step) => (
+              {steps.data.filter((step) => step.attributes.status.data.id == 1).length > 0 ? (
+                <OrderedList>
+                  {steps.data.map((step) => (
                     <ListItem key={step.id} mb="2">
                       <Link
                         href={`/properti-detail/${post.data.attributes.name.toLowerCase()}/${index}/${
@@ -161,11 +160,11 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                         </a>
                       </Link>
                     </ListItem>
-                  ))
-                ) : (
-                  <Text as="p">Tidak ada data.</Text>
-                )}
-              </OrderedList>
+                  ))}
+                </OrderedList>
+              ) : (
+                <Text as="p">Tidak ada data.</Text>
+              )}
             </AccordionPanel>
           </AccordionItem>
 
@@ -184,17 +183,19 @@ const Properti = ({ index, post, steps, tags, properties }) => {
             </h2>
             <AccordionPanel pb={4}>
               {steps.data.filter((step) => step.attributes.status.data.id == 2).length > 0 ? (
-                steps.data.map((step) => (
-                  <ListItem key={step.id} mb="2">
-                    <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
-                      <a>
-                        <Text as="p" textDecoration="underline" display="inline">
-                          {step.attributes.post.data.attributes.name}
-                        </Text>
-                      </a>
-                    </Link>
-                  </ListItem>
-                ))
+                <OrderedList>
+                  {steps.data.map((step) => (
+                    <ListItem key={step.id} mb="2">
+                      <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
+                        <a>
+                          <Text as="p" textDecoration="underline" display="inline">
+                            {step.attributes.post.data.attributes.name}
+                          </Text>
+                        </a>
+                      </Link>
+                    </ListItem>
+                  ))}
+                </OrderedList>
               ) : (
                 <Text as="p">Tidak ada data.</Text>
               )}
@@ -216,17 +217,19 @@ const Properti = ({ index, post, steps, tags, properties }) => {
             </h2>
             <AccordionPanel pb={4}>
               {steps.data.filter((step) => step.attributes.status.data.id == 3).length > 0 ? (
-                steps.data.map((step) => (
-                  <ListItem key={step.id} mb="2">
-                    <Link href={`/properti-detail/${index[0]}/${index[1]}/${step.attributes.post.data.id}`}>
-                      <a>
-                        <Text as="p" textDecoration="underline" display="inline">
-                          {step.attributes.post.data.attributes.name}
-                        </Text>
-                      </a>
-                    </Link>
-                  </ListItem>
-                ))
+                <OrderedList>
+                  {steps.data.map((step) => (
+                    <ListItem key={step.id} mb="2">
+                      <Link href={`/properti-detail/${index[0]}/${index[1]}/${step.attributes.post.data.id}`}>
+                        <a>
+                          <Text as="p" textDecoration="underline" display="inline">
+                            {step.attributes.post.data.attributes.name}
+                          </Text>
+                        </a>
+                      </Link>
+                    </ListItem>
+                  ))}
+                </OrderedList>
               ) : (
                 <Text as="p">Tidak ada data.</Text>
               )}
