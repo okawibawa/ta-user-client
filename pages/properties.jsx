@@ -66,8 +66,8 @@ const Properties = () => {
       <Box w="100%" mb="8" mt="16">
         <Heading as="h2">Properti Upacara</Heading>
         <Text as="p">
-          Properti upacara lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque delectus perferendis error
-          natus incidunt dolorum.
+          Properti merupakan nama lain yang kami berikan untuk sarana-prasana yang menjadi bagian atau menyertai dari
+          sebuah Upacara Yadnya.
         </Text>
       </Box>
 

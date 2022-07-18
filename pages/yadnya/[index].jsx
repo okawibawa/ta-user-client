@@ -36,7 +36,7 @@ const Yadnya = ({ index, response }) => {
           Upacara-upacara
         </Heading>
         {response.data.length > 0 ? (
-          <Box display="grid" gridTemplateColumns={['1fr', 'repeat(3, 1fr)', 'repeat(5, 1fr)']}>
+          <Box display="grid" gap={6} gridTemplateColumns={['1fr', 'repeat(3, 1fr)', 'repeat(5, 1fr)']}>
             {response.data.map((ceremony) => (
               <Link key={ceremony.id} href={`/detail-yadnya/${ceremony.id}`}>
                 <a>
@@ -48,6 +48,7 @@ const Yadnya = ({ index, response }) => {
                     p="4"
                     borderRadius="8"
                     boxShadow="0 12px 24px rgba(0, 0, 0, .1)"
+                    height="100%"
                   >
                     <Image
                       src={

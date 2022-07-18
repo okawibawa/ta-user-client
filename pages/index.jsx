@@ -29,8 +29,8 @@ export default function Home() {
         <Box w="48%">
           <Heading as="h2">Sanatras</Heading>
           <Text as="p">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque delectus perferendis error natus incidunt
-            dolorum.
+            Sanatras merupakan sebuah wikipedia yang berisikan informasi mengenai Upacara Yadnya di Bali beserta tahapan
+            prosesi dan juga properti yang di gunakan.
           </Text>
         </Box>
 
@@ -44,8 +44,9 @@ export default function Home() {
           Tentang Sanatras
         </Heading>
         <Text as="p" maxW="576px" mx="auto">
-          Sanatras merupakan sebuah sistem informasi Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa, cum
-          reprehenderit atque rerum numquam vel?
+          Sanatras menyediakan informasi lengkap mengenai Upacara Yadnya yang terdapat di Bali. Bagaimana tahapan yang
+          terdapat di dalam Upacara Yadnya tersebut, dan juga properti seperti mantram, kidung, gamelan, tari, tabuh,
+          ataupun properti lainnya yang digunakan di upacara tersebut.
         </Text>
       </Box>
 
@@ -91,7 +92,7 @@ export default function Home() {
         </Heading>
 
         <Text as="p" mt="2" mb="8">
-          Sanatras Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, praesentium!
+          Hubungi kami apabila Anda memiliki pertanyaan, informasi, atau diskusi lainnya.
         </Text>
 
         <Button backgroundColor="#FAF3E3" _hover={{ backgroundColor: '#FAF3E3' }}>
