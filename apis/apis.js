@@ -35,7 +35,7 @@ export const getAllTags = async () => {
 
 export const getPostByTag = async (id) => {
   try {
-    const res = await axios.get(`${host}/posts/tag/${id}?populate=*`);
+    const res = await axios.get(`${host}/posts/tag/${id}?populate=*&pagination[limit]=-1`);
 
     return res;
   } catch (error) {
