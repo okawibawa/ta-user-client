@@ -36,7 +36,7 @@ const Yadnya = ({ index, response }) => {
           Upacara-upacara
         </Heading>
         {response.data.length > 0 ? (
-          <Box display="grid" gap={6} gridTemplateColumns={['1fr', 'repeat(3, 1fr)', 'repeat(5, 1fr)']}>
+          <Box display="grid" gap={6} gridTemplateColumns={['1fr 1fr', 'repeat(3, 1fr)', 'repeat(5, 1fr)']} mb={[8, 0]}>
             {response.data.map((ceremony) => (
               <Link key={ceremony.id} href={`/detail-yadnya/${ceremony.id}`}>
                 <a>

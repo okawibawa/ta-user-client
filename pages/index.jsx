@@ -16,17 +16,29 @@ import { ceremonies } from '../constants/ceremonies';
 
 export default function Home() {
   const [sliderRef] = useKeenSlider({
+    breakpoints: {
+      '(min-width: 600px)': {
+        slides: { perView: 2, spacing: 15 },
+      },
+    },
     slides: {
-      perView: 2,
-      spacing: 15,
+      perView: 1,
     },
   });
 
   return (
     <Layout>
       <HeadSeo />
-      <Box display="flex" w="100%" h="60vh" justifyContent="space-between" alignItems="center" mb="8">
-        <Box w="48%">
+      <Box
+        display="flex"
+        flexDirection={['column', 'row']}
+        w="100%"
+        h="60vh"
+        justifyContent="space-between"
+        alignItems="center"
+        mb="8"
+      >
+        <Box w={['100%', '48%']}>
           <Heading as="h2">Sanatras</Heading>
           <Text as="p">
             Sanatras merupakan sebuah wikipedia yang berisikan informasi mengenai Upacara Yadnya di Bali beserta tahapan
@@ -34,7 +46,7 @@ export default function Home() {
           </Text>
         </Box>
 
-        <Box w="48%">
+        <Box w={['100%', '48%']}>
           <Image width={512} height={312} src="/hero.png" alt="Hero" />
         </Box>
       </Box>

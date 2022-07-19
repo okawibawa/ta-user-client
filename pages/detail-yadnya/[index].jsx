@@ -67,8 +67,8 @@ const Properti = ({ index, post, steps, tags, properties }) => {
           {post.data.attributes.name}
         </Heading>
 
-        <Box display="flex" alignItems="flex-start" justifyContent="space-between">
-          <Box w={['100%', '48%']}>
+        <Box display="flex" flexDirection={['column', 'row']} alignItems="flex-start" justifyContent="space-between">
+          <Box w={['100%', '48%']} mb={[4, 0]}>
             {post.data.attributes.pictures.data && (
               <Box mb="4">
                 <Carousel>

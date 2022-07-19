@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 // comps
 import Layout from '../../components/Layout';
@@ -83,8 +85,20 @@ const Properti = ({ index, post, tags, subProperties }) => {
           {post.data.attributes.name}
         </Heading>
 
-        <Box display="flex" alignItems="flex-start" justifyContent="space-between">
-          <Box w={['100%', '48%']}>
+        <Box display="flex" flexDirection={['column', 'row']} alignItems="flex-start" justifyContent="space-between">
+          <Box w={['100%', '48%']} mb={[4, 0]}>
+            {post.data.attributes.pictures.data && (
+              <Box mb="4">
+                <Carousel>
+                  {post.data.attributes.pictures.data.map((picture) => (
+                    <Box key={picture.id}>
+                      <img src={picture.attributes.url} />
+                    </Box>
+                  ))}
+                </Carousel>
+              </Box>
+            )}
+
             <Text as="p" dangerouslySetInnerHTML={{ __html: post.data.attributes.description }}></Text>
           </Box>
 
