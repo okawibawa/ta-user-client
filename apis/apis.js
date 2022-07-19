@@ -114,3 +114,13 @@ export const getCeremonyByParent = async (host, parent, id) => {
     return error;
   }
 };
+
+export const searchPost = async (query) => {
+  try {
+    const res = await axios.get(`${host}/search-post/${query}?populate=tag`);
+
+    return res;
+  } catch (error) {
+    return error;
+  }
+};

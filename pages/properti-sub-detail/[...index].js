@@ -23,7 +23,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
 } from '@chakra-ui/react';
 
 // apis

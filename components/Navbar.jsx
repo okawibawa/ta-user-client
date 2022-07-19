@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+/* eslint-disable react/no-children-prop */
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 // chakra
 import {
@@ -13,26 +15,80 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  InputGroup,
+  InputLeftElement,
+  Input,
+  keyframes,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
 // icon
-import { Menu as MenuIcon, Cancel } from 'iconoir-react';
+import { Menu as MenuIcon, Cancel, Search } from 'iconoir-react';
+
+const queryList = [
+  'Piodalan',
+  'Tari Baris',
+  'Atma Wedana',
+  'Tari Jauk',
+  'Panca Sembah',
+  'Tri Sandya',
+  'Gong Kebyar',
+  'Tabuh Telu',
+  'Gamelan Baris',
+];
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [query, setQuery] = useState('Rejang Renteng');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const router = useRouter();
+
+  useEffect(() => {
+    setInterval(() => {
+      setQuery(queryList[Math.floor(Math.random() * queryList.length)]);
+    }, 5000);
+  }, []);
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter') {
+      router.push({
+        pathname: '/search-result/[index]',
+        query: {
+          index: searchQuery,
+        },
+      });
+    }
+  };
+
+  const handleSearchQuery = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   return (
     <Container maxW="container.lg">
       <nav>
         <Box display="flex" alignItems="center" justifyContent="space-between" py="4" position="relative">
-          <Heading as="h1" fontSize="1.25rem" fontWeight="bold">
+          <Heading as="h1" width={['22%', '10%']} fontSize={['.825rem', '1.25rem']} fontWeight="bold">
             <Link href="/">
               <a>Sanatras</a>
             </Link>
           </Heading>
 
-          <Box display={['none', 'block']}>
+          <Box width={['62%', '56%']}>
+            <InputGroup>
+              <InputLeftElement pointerEvents="none" children={<Search />} />
+              <Input
+                onKeyDown={handleSearch}
+                onChange={handleSearchQuery}
+                focusBorderColor="#FAF3E3"
+                type="text"
+                placeholder={`cth. ${query}`}
+              />
+            </InputGroup>
+          </Box>
+
+          <Box display={['none', 'block']} width={['6%', '30%']}>
             <UnorderedList display="flex">
               <ListItem listStyleType="none">
                 <Menu>
@@ -73,15 +129,10 @@ const Navbar = () => {
                   <a>Properti</a>
                 </Link>
               </ListItem>
-              <ListItem listStyleType="none">
-                <Link href="#">
-                  <a>Tentang Kami</a>
-                </Link>
-              </ListItem>
             </UnorderedList>
           </Box>
 
-          <Box display={['block', 'none']}>
+          <Box display={['block', 'none']} width="3%">
             <Box
               visibility={`${mobileMenu === true ? 'hidden' : 'visible'}`}
               opacity={`${mobileMenu === true ? '0' : '1'}`}
@@ -161,11 +212,6 @@ const Navbar = () => {
               <ListItem listStyleType="none" my={8}>
                 <Link href="/properties">
                   <a>Properti</a>
-                </Link>
-              </ListItem>
-              <ListItem listStyleType="none">
-                <Link href="#">
-                  <a>Tentang Kami</a>
                 </Link>
               </ListItem>
             </UnorderedList>
