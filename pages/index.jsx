@@ -26,6 +26,8 @@ export default function Home() {
     },
   });
 
+  console.log('Hello there, hi.');
+
   return (
     <Layout>
       <HeadSeo />
