@@ -35,7 +35,7 @@ export const getServerSideProps = async (context) => {
 
   const result = await getSubStepsDetail(index[0], index[1], index[2]);
   const tags = await getAllTags();
-  const subProperties = await getSubDetailProperties(index[0], index[1], index[2]);
+  const subProperties = await getSubDetailProperties(index[0], index[1], index[3]);
 
   return {
     props: {
@@ -48,6 +48,7 @@ export const getServerSideProps = async (context) => {
 };
 
 const Properti = ({ index, post, tags, subProperties }) => {
+  console.log({ post });
   return (
     <Layout>
       <HeadSeo />
@@ -93,7 +94,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
 
             <Text
               as="p"
-              dangerouslySetInnerHTML={{ __html: post.data[0].attributes.post.data.attributes.descriptions }}
+              dangerouslySetInnerHTML={{ __html: post.data[0].attributes.post.data.attributes.description }}
             ></Text>
           </Box>
 
