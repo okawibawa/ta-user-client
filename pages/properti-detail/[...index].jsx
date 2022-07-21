@@ -34,9 +34,9 @@ export const getServerSideProps = async (context) => {
     query: { index },
   } = context;
 
-  const result = await getYadnyaDetailData(index[2]);
+  const result = await getYadnyaDetailData(index[1]);
   const tags = await getAllTags();
-  const subProperties = await getStepsSubDetails(index[1], index[2]);
+  const subProperties = await getStepsSubDetails(index[0], index[1]);
 
   return {
     props: { index, post: result.data, tags: tags.data, subProperties: subProperties.data },
