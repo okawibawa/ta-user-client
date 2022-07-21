@@ -115,13 +115,14 @@ const Properties = () => {
             </Box>
           ) : (
             <Box>
-              {tags.data
-                .filter((tag) => tag.id === activeTag)
-                .map((tag) => (
-                  <Heading key={tag.id} as="h2">
-                    {tag.attributes.name}
-                  </Heading>
-                ))}
+              {!isLoading &&
+                tags.data
+                  .filter((tag) => tag.id === activeTag)
+                  .map((tag) => (
+                    <Heading key={tag.id} as="h2">
+                      {tag.attributes.name}
+                    </Heading>
+                  ))}
 
               <Box>
                 <TableContainer>
