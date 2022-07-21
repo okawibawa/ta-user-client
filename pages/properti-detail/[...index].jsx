@@ -173,7 +173,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
                   .filter((property) => property.attributes.tag.data.id == 3)
                   .map((property) => (
                     <ListItem key={property.id} mb="2">
-                      <Link href={`/properti-sub-detail/${index[1]}/${index[2]}/${property.attributes.post.data.id}`}>
+                      <Link href={`/properti-sub-detail/${index[0]}/${index[1]}/${property.attributes.post.data.id}`}>
                         <a>
                           <Text as="p" textDecoration="underline" display="inline">
                             {property.attributes.post.data.attributes.name}
