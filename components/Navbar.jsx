@@ -167,7 +167,7 @@ const Navbar = () => {
             transition="all ease-in-out .200s"
             position="absolute"
             zIndex={4}
-            top="14"
+            top="20"
             width="100%"
             borderRadius={6}
             py={6}
