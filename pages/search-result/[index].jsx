@@ -141,7 +141,13 @@ const Properties = () => {
                               <Td width="1rem">{index + 1}.</Td>
                               <Td>{result.attributes.name}</Td>
                               <Td isNumeric>
-                                <Link href={`/properti/${result.id}`}>
+                                <Link
+                                  href={
+                                    result.attributes.tag.data.id === 7
+                                      ? `/detail-yadnya/${result.id}`
+                                      : `/properti/${result.id}`
+                                  }
+                                >
                                   <a>
                                     <Button size="sm" backgroundColor="#FAF3E3" _hover={{ backgroundColor: '#FAF3E3' }}>
                                       Lihat

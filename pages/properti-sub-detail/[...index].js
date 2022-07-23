@@ -48,7 +48,6 @@ export const getServerSideProps = async (context) => {
 };
 
 const Properti = ({ index, post, tags, subProperties }) => {
-  console.log({ post });
   return (
     <Layout>
       <HeadSeo />
