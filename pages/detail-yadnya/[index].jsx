@@ -102,24 +102,6 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                 <Text as="p">Tidak terdapat media video.</Text>
               )}
             </Box>
-
-            <Box>
-              {post.data.attributes.audio_url ? (
-                <AspectRatio maxW="560px" ratio={16 / 9}>
-                  <iframe
-                    title="audio"
-                    width="100%"
-                    height="100"
-                    scrolling="no"
-                    frameBorder="no"
-                    allow="autoplay"
-                    src={`https://w.soundcloud.com/player/?url=${post.data.attributes.audio_url}`}
-                  ></iframe>
-                </AspectRatio>
-              ) : (
-                <Text as="p">Tidak terdapat media audio.</Text>
-              )}
-            </Box>
           </Box>
         </Box>
       </Box>
