@@ -255,7 +255,7 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                         .filter((property) => property.attributes.tag.data !== null)
                         .filter((property) => property.attributes.tag.data.id == tag.id).length
                     }{' '}
-                    Prosesi
+                    Properti
                   </Text>
                   <AccordionIcon />
                 </AccordionButton>
