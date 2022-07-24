@@ -66,7 +66,7 @@ export const getCeremonySteps = async (id) => {
 export const getPropertiesByMainPost = async (main_post) => {
   try {
     const res = await axios.get(
-      `${host}/properties-by-main/${main_post}?populate=tag,child_post,main_post,post,parent_post`
+      `${host}/properties-by-main/${main_post}?populate=tag,child_post,main_post,post,parent_post&pagination[limit]=-1`
     );
 
     return res;

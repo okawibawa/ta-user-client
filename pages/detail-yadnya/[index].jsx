@@ -241,45 +241,47 @@ const Properti = ({ index, post, steps, tags, properties }) => {
         </Heading>
 
         <Accordion allowToggle>
-          {tags.data.map((tag) => (
-            <AccordionItem key={tag.id}>
-              <h2>
-                <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    <Text as="p">{tag.attributes.name}</Text>
-                  </Box>
+          {tags.data
+            .filter((tag) => tag.id !== 3 && tag.id !== 7)
+            .map((tag) => (
+              <AccordionItem key={tag.id}>
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      <Text as="p">{tag.attributes.name}</Text>
+                    </Box>
 
-                  <Text as="p" mr="4" fontSize=".825rem">
-                    {
-                      properties.data
-                        .filter((property) => property.attributes.tag.data !== null)
-                        .filter((property) => property.attributes.tag.data.id == tag.id).length
-                    }{' '}
-                    Properti
-                  </Text>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                <OrderedList>
-                  {properties.data
-                    .filter((property) => property.attributes.tag.data !== null)
-                    .filter((property) => property.attributes.tag.data.id == tag.id)
-                    .map((property) => (
-                      <ListItem key={property.id} mb="2">
-                        <Link href={`/properti/${property.attributes.post.data.id}`}>
-                          <a>
-                            <Text as="p" textDecoration="underline" display="inline">
-                              {property.attributes.post.data.attributes.name}
-                            </Text>
-                          </a>
-                        </Link>
-                      </ListItem>
-                    ))}
-                </OrderedList>
-              </AccordionPanel>
-            </AccordionItem>
-          ))}
+                    <Text as="p" mr="4" fontSize=".825rem">
+                      {
+                        properties.data
+                          .filter((property) => property.attributes.tag.data !== null)
+                          .filter((property) => property.attributes.tag.data.id == tag.id).length
+                      }{' '}
+                      Properti
+                    </Text>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <OrderedList>
+                    {properties.data
+                      .filter((property) => property.attributes.tag.data !== null)
+                      .filter((property) => property.attributes.tag.data.id == tag.id)
+                      .map((property) => (
+                        <ListItem key={property.id} mb="2">
+                          <Link href={`/properti/${property.attributes.post.data.id}`}>
+                            <a>
+                              <Text as="p" textDecoration="underline" display="inline">
+                                {property.attributes.post.data.attributes.name}
+                              </Text>
+                            </a>
+                          </Link>
+                        </ListItem>
+                      ))}
+                  </OrderedList>
+                </AccordionPanel>
+              </AccordionItem>
+            ))}
         </Accordion>
       </Box>
     </Layout>
