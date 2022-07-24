@@ -36,7 +36,7 @@ export const getServerSideProps = async (context) => {
 
   const result = await getYadnyaDetailData(index[2]);
   const tags = await getAllTags();
-  const subProperties = await getStepsSubDetails(index[0], index[1]);
+  const subProperties = await getStepsSubDetails(index[1], index[2]);
 
   return {
     props: { index, post: result.data, tags: tags.data, subProperties: subProperties.data },
@@ -176,7 +176,7 @@ const Properti = ({ index, post, tags, subProperties }) => {
                   .map((property) => (
                     <ListItem key={property.id} mb="2">
                       <Link
-                        href={`/properti-sub-detail/${index[0]}/${index[1]}/${property.attributes.post.data.id}/${property.id}`}
+                        href={`/properti-sub-detail/${index[0]}/${index[1]}/${index[2]}/${property.attributes.post.data.id}/${property.id}`}
                       >
                         <a>
                           <Text as="p" textDecoration="underline" display="inline">

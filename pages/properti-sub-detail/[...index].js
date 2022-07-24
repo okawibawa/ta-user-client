@@ -33,9 +33,9 @@ export const getServerSideProps = async (context) => {
     query: { index },
   } = context;
 
-  const result = await getSubStepsDetail(index[0], index[1], index[2]);
+  const result = await getSubStepsDetail(index[1], index[2], index[3]);
   const tags = await getAllTags();
-  const subProperties = await getSubDetailProperties(index[0], index[1], index[3]);
+  const subProperties = await getSubDetailProperties(index[1], index[2], index[4]);
 
   return {
     props: {

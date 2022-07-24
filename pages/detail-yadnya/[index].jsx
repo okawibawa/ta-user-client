@@ -173,7 +173,11 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                     .filter((step) => step.attributes.status.data.id == 2)
                     .map((step) => (
                       <ListItem key={step.id} mb="2">
-                        <Link href={`/properti-detail/${index}/${step.attributes.post.data.id}`}>
+                        <Link
+                          href={`/properti-detail/${post.data.attributes.name.toString().toLowerCase()}/${index}/${
+                            step.attributes.post.data.id
+                          }`}
+                        >
                           <a>
                             <Text as="p" textDecoration="underline" display="inline">
                               {step.attributes.post.data.attributes.name}
@@ -209,7 +213,11 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                     .filter((step) => step.attributes.status.data.id == 3)
                     .map((step) => (
                       <ListItem key={step.id} mb="2">
-                        <Link href={`/properti-detail/${index[0]}/${index[1]}/${step.attributes.post.data.id}`}>
+                        <Link
+                          href={`/properti-detail/${post.data.attributes.name.toString().toLowerCase()}/${index}/${
+                            step.attributes.post.data.id
+                          }`}
+                        >
                           <a>
                             <Text as="p" textDecoration="underline" display="inline">
                               {step.attributes.post.data.attributes.name}
