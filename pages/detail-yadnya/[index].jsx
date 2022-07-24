@@ -132,8 +132,9 @@ const Properti = ({ index, post, steps, tags, properties }) => {
                     .filter((step) => step.attributes.status.data.id == 1)
                     .map((step) => (
                       <ListItem key={step.id} mb="2">
+                        {console.log(post.data.attributes.name)}
                         <Link
-                          href={`/properti-detail/${post.data.attributes.name.toLowerCase()}/${index}/${
+                          href={`/properti-detail/${post.data.attributes.name.toString().toLowerCase()}/${index}/${
                             step.attributes.post.data.id
                           }`}
                         >

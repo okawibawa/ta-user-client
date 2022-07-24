@@ -34,7 +34,7 @@ export const getServerSideProps = async (context) => {
     query: { index },
   } = context;
 
-  const result = await getYadnyaDetailData(index[1]);
+  const result = await getYadnyaDetailData(index[2]);
   const tags = await getAllTags();
   const subProperties = await getStepsSubDetails(index[0], index[1]);
 
@@ -45,6 +45,8 @@ export const getServerSideProps = async (context) => {
 
 const Properti = ({ index, post, tags, subProperties }) => {
   const uniqueIds = [];
+
+  console.log({ index });
 
   const unique = subProperties.data
     .filter((subStep) => subStep.attributes.tag.data !== null && subStep.attributes.tag.data.id !== 3)
